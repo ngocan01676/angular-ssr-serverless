@@ -1,10 +1,17 @@
-import { Component } from '@angular/core';
-
+import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-ssr-serverless';
+  title = 'ssr-serverless';
+  platform: string;
+
+
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+  public ngOnInit(): void {
+    this.platform = isPlatformBrowser(this.platformId) ? 'Browser' : 'Server';
+  }
 }

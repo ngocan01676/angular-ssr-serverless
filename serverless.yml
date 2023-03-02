@@ -1,0 +1,30 @@
+service: ssrserverless-angular
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  memorySize: 512
+  timeout: 50
+  stage: production
+  region: us-east-1
+
+package:
+  exclude:
+   - src/**
+   - node_modules/**
+   - firebug-lite/**
+   - e2e/**
+   - coverage/**
+   - '!node_modules/aws-serverless-express/**'
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+
+functions:
+  api:
+    handler: lambda.ssrserverless
+    events:
+      - http: ANY {proxy+}
+      - http: ANY /
