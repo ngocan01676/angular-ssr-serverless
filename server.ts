@@ -9,7 +9,7 @@
 // import { AppServerModule } from './src/main.server';
 
 // // The Express app is exported so that it can be used by serverless Functions.
-// export function app(): express.Express {
+// function register(): express.Express {
 //   const server = express();
 //   const distFolder = join(process.cwd(), 'dist/angular-ssr-serverless/browser');
 //   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
@@ -37,6 +37,8 @@
 //   return server;
 // }
 
+// export const app = register();
+
 // function run(): void {
 //   const port = process.env['PORT'] || 4000;
 
@@ -57,7 +59,7 @@
 //   run();
 // }
 
-// export * from './src/main.server';
+//export * from './src/main.server';
 
 
 
@@ -71,7 +73,7 @@ import {ngExpressEngine} from '@nguniversal/express-engine';
 
 import * as express from 'express';
 import {join} from 'path';
-import { AppServerModule } from 'src/app/app.server.module';
+import { AppServerModule } from './src/app/app.server.module';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
