@@ -98,6 +98,21 @@
             "scripts": []
           }
         },
+        "serverless": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/serverless",
+            "main": "serverless.ts",
+            "tsConfig": "tsconfig.serverless.json"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "sourceMap": false,
+              "optimization": true
+            }
+          }
+        },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {

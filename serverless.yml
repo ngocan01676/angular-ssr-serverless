@@ -1,4 +1,7 @@
 service: ssrserverless-angular
+plugins:
+  - serverless-apigw-binary
+  - serverless-offline
 
 provider:
   name: aws
@@ -10,18 +13,17 @@ provider:
 
 package:
   exclude:
-   - src/**
-   - node_modules/**
-   - firebug-lite/**
-   - e2e/**
-   - coverage/**
-   - '!node_modules/aws-serverless-express/**'
-   - '!node_modules/binary-case/**'
-   - '!node_modules/type-is/**'
-   - '!node_modules/media-typer/**'
-   - '!node_modules/mime-types/**'
-   - '!node_modules/mime-db/**'
-
+    - ./**
+    - '!node_modules/@vendia/**'
+  include:
+    - "node_modules/aws-serverless-express/**"
+    - "node_modules/binary-case/**"
+    - "node_modules/type-is/**"
+    - "node_modules/media-typer/**"
+    - "node_modules/mime-types/**"
+    - "node_modules/mime-db/**"
+    - "dist/**"
+    - "lambda.js"
 custom:
   apigwBinary:
     types:
@@ -29,7 +31,7 @@ custom:
 
 functions:
   api:
-    handler: lambda.universal
+    handler: lambda.handler
     events:
       - http: ANY {proxy+}
       - http: ANY /
